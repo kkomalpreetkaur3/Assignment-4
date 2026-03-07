@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { AppError } from "../errors/errors";
 import { HTTP_STATUS } from "../../../constants/httpConstants";
 import { errorResponse } from "../models/responseModel";
 
@@ -17,7 +18,16 @@ const errorHandler = (
     }
 
     console.error(`Error: ${err.message}`);
-    
+
+    if (process.env.NODE_ENV !== "production") {
+        console.error(`Stack: ${err.stack}`);
+    }
+
+    if (err instanceof AppError) {
+        res.status(err.statusCode).json(errorResponse(err.message, err.code));
+        return;
+    }
+
     res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json(
         errorResponse("An unexpected error occurred", "UNKNOWN_ERROR")
     );
