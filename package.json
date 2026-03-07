@@ -5,6 +5,16 @@
     "firebase-admin": "^13.7.0",
     "morgan": "^1.10.1"
   },
+
+  "scripts": {
+  "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+  "build": "tsc",
+  "start": "node dist/server.js",
+  "test": "jest",
+  "test:watch": "jest --watch",
+  "test:coverage": "jest --coverage"
+},
+
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/jest": "^30.0.0",
