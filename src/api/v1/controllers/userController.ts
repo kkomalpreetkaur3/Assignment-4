@@ -12,7 +12,7 @@ export const getUserDetails = async (
     const { id } = req.params;
 
     try {
-        const user: UserRecord = await auth.getUser(id);
+        const user: UserRecord = await auth.getUser(id as string);
         res.status(HTTP_STATUS.OK).json(successResponse(user));
     } catch (error) {
         next(error);
