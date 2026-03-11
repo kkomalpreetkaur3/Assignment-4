@@ -13,12 +13,9 @@ import adminRoutes from "./api/v1/routes/adminRoutes";
 
 const app = express();
 
-if (process.env.NODE_ENV === "production") {
-    app.use(accessLogger);
-    app.use(errorLogger);
-} else {
-    app.use(consoleLogger);
-}
+app.use(accessLogger);
+app.use(errorLogger);
+app.use(consoleLogger);
 
 app.use(express.json());
 
