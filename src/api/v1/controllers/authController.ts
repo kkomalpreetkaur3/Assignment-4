@@ -22,7 +22,7 @@ export const signInHandler = async (
             );
         }
 
-        const apiKey = "AIzaSyDS35E4J_gFKda5_KMAn-KdX-56Kdufc4M";
+        const apiKey = "FIREBASE_WEB_API_KEY" in process.env ? process.env.FIREBASE_WEB_API_KEY : undefined;
 
         if (!apiKey) {
             throw new ServiceError(
